@@ -8,7 +8,7 @@ PROGRAMS = $(SOURCES:.c=)
 tests: $(PROGRAMS)
 
 clean:
-	rm -f *~ .*~ $(PROGRAMS)
+	rm -f *~ .*~ .etags $(PROGRAMS)
 
 %: %.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
