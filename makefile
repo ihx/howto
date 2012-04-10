@@ -10,5 +10,8 @@ tests: $(PROGRAMS)
 clean:
 	rm -f *~ .*~ .etags $(PROGRAMS)
 
+stats:
+	wc -l *.c
+
 %: %.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
