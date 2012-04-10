@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
 
   for (i = 1; i < TIME_STEPS; i++) {
     for (j = 0; j < IH_BITARRAY_SIZE; j++) {
-      a = ih_bit_get(history[i - 1], ih_wrap(j - 1, 32));
-      b = ih_bit_get(history[i - 1], ih_wrap(j, 32));
-      c = ih_bit_get(history[i - 1], ih_wrap(j + 1, 32));
+      a = ih_bit_get(history[i - 1], ih_wrap(j - 1, IH_BITARRAY_SIZE));
+      b = ih_bit_get(history[i - 1], ih_wrap(j, IH_BITARRAY_SIZE));
+      c = ih_bit_get(history[i - 1], ih_wrap(j + 1, IH_BITARRAY_SIZE));
       neighborhood = (4 * a) + (2 * b) + c;
       cell_value = ih_ca_calculate(CA_RULE, neighborhood);
       ih_bit_set(&history[i], j, cell_value);
