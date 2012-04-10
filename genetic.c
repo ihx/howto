@@ -5,14 +5,14 @@
 
 #define GOAL_TOTAL 256
 
-unsigned short numbers[32] = {
+unsigned short numbers[IH_GENOME_SIZE_BITS] = {
   23, 123, 456, 235, 567, 123, 11, 89,
   213, 1, 76, 57, 78, 131, 411, 859,
   44, 45, 56, 315, 15, 126, 101, 889,
   243, 423, 356, 87, 192, 348, 45, 54
 };
 
-double calculate_fitness(uint32_t genome, void *context)
+double calculate_fitness(ih_genome_t genome, void *context)
 {
   double fitness;
   unsigned long total = 0;
@@ -20,7 +20,7 @@ double calculate_fitness(uint32_t genome, void *context)
   unsigned short *numbers = context;
   unsigned short total_numbers = 0;
 
-  for (i = 0; i < 32; i++) {
+  for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
     if (ih_tools_get_bit(genome, i)) {
       total += *(numbers + i);
       total_numbers++;
@@ -36,7 +36,7 @@ double calculate_fitness(uint32_t genome, void *context)
 int main(int argc, char *argv[])
 {
   ih_genetic_t *genetic;
-  uint32_t fittest_genome;
+  ih_genome_t fittest_genome;
   unsigned short i;
   unsigned long total = 0;
   ih_boole_t first_number = ih_boole_true;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
   }
 
   fittest_genome = ih_genetic_generate(genetic);
-  for (i = 0; i < 32; i++) {
+  for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
     if (ih_tools_get_bit(fittest_genome, i)) {
       if (!first_number) {
         printf(" + ");
