@@ -18,10 +18,7 @@ int main(int argc, char *argv[])
   ih_bit_t b;
   ih_bit_t c;
 
-  for (j = 0; j < IH_BITARRAY_SIZE; j++) {
-    ih_bit_set(&history[0], j, 0);
-  }
-  ih_bit_set(&history[0], IH_BITARRAY_SIZE / 2, 1);
+  ih_bitarray_seed_center(&history[0]);
 
   for (i = 1; i < TIME_STEPS; i++) {
     for (j = 0; j < IH_BITARRAY_SIZE; j++) {
