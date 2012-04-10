@@ -1,15 +1,15 @@
 == ABOUT ======================================================================
 
-this are the test programs for the inhesion cellular genetic programming
+these are the how to programs for the inhesion cellular genetic programming
 library.
 
 for more information on inhesion, go to http://inhesion.com/.
 
 == BUILDING ===================================================================
 
-to build these tests, set the environment variable $IH to the location of your
-inhesion library.  for example, if you checked out inhesion into
-/home/clownfysh/ih, then set IH=/home/clownfysh/ih.  that will tell the test
+to build these programs, set the environment variable $IH to the location of
+your inhesion library.  for example, if you checked out inhesion into
+/home/clownfysh/ih, then set IH=/home/clownfysh/ih.  that will tell the how to
 programs which inhesion library to build against.
 
 once you've done that, just type "make".
