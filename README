@@ -10,12 +10,9 @@ for more information on inhesion, go to http://inhesion.com/.
 to build these programs, set the environment variable $IH to the location of
 your inhesion library.  for example, if you checked out inhesion into
 /home/clownfysh/ih, then set IH=/home/clownfysh/ih.  that will tell the how to
-programs which inhesion library to build against.  if you've installed
-inhesion using its "make install" command, the how to programs will use the
-installed version of the library--they still need the $IH variable to find the
-library header files, however.
+programs which inhesion library to build against.
 
-once you've set the IH variable, just type "make".
+once you've done that, just type "make".
 
 == LICENSE ====================================================================
 
