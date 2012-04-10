@@ -1,7 +1,8 @@
+#include "bit.h"
 #include "boole.h"
 #include "minigen.h"
 #include "standard.h"
-#include "tools.h"
+#include "trace.h"
 
 #define GOAL_TOTAL 256
 
@@ -21,7 +22,7 @@ double calculate_fitness(ih_genome_t genome, void *context)
   unsigned short total_numbers = 0;
 
   for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
-    if (ih_tools_get_bit(genome, i)) {
+    if (ih_bit_get(genome, i)) {
       total += *(numbers + i);
       total_numbers++;
     }
@@ -44,12 +45,12 @@ int main(int argc, char *argv[])
   /*  minigen = ih_minigen_create(calculate_fitness, 0.8, numbers);  */
   minigen = ih_minigen_create(calculate_fitness, 0.1, numbers);
   if (!minigen) {
-    ih_tools_trace_exit("ih_minigen_create");
+    ih_trace_exit("ih_minigen_create");
   }
 
   fittest_genome = ih_minigen_generate(minigen);
   for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
-    if (ih_tools_get_bit(fittest_genome, i)) {
+    if (ih_bit_get(fittest_genome, i)) {
       if (!first_number) {
         printf(" + ");
       }
