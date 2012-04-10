@@ -1,5 +1,5 @@
 #include "boole.h"
-#include "genetic.h"
+#include "minigen.h"
 #include "standard.h"
 #include "tools.h"
 
@@ -35,19 +35,19 @@ double calculate_fitness(ih_genome_t genome, void *context)
 
 int main(int argc, char *argv[])
 {
-  ih_genetic_t *genetic;
+  ih_minigen_t *minigen;
   ih_genome_t fittest_genome;
   unsigned short i;
   unsigned long total = 0;
   ih_boole_t first_number = ih_boole_true;
 
-  /*  genetic = ih_genetic_create(calculate_fitness, 0.8, numbers);  */
-  genetic = ih_genetic_create(calculate_fitness, 0.1, numbers);
-  if (!genetic) {
-    ih_tools_trace_exit("ih_genetic_create");
+  /*  minigen = ih_minigen_create(calculate_fitness, 0.8, numbers);  */
+  minigen = ih_minigen_create(calculate_fitness, 0.1, numbers);
+  if (!minigen) {
+    ih_tools_trace_exit("ih_minigen_create");
   }
 
-  fittest_genome = ih_genetic_generate(genetic);
+  fittest_genome = ih_minigen_generate(minigen);
   for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
     if (ih_tools_get_bit(fittest_genome, i)) {
       if (!first_number) {
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
   }
   printf(" = %lu\n", total);
 
-  ih_genetic_destroy(genetic);
+  ih_minigen_destroy(minigen);
 
   return 0;
 }
