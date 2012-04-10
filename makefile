@@ -1,4 +1,4 @@
-CFLAGS = -ansi -pedantic -Wall -Werror -o3
+CFLAGS = -ansi -pedantic -Wall -Werror -o3 -D_BSD_SOURCE
 CFLAGS += -I$(IH) -L$(IH)
 LDFLAGS = -lih
 
