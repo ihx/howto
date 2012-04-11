@@ -10,7 +10,7 @@ unsigned short numbers[IH_GENOME_SIZE_BITS] = {
   23, 123, 456, 235, 567, 123, 11, 89,
   213, 1, 76, 57, 78, 131, 411, 859,
   44, 45, 56, 315, 15, 126, 101, 889,
-  243, 423, 356, 87, 192, 348, 45, 54
+  243, 423, 9356, 987, 192, 348, 45, 54
 };
 
 double calculate_fitness(ih_genome_t genome, void *context)
@@ -36,19 +36,14 @@ double calculate_fitness(ih_genome_t genome, void *context)
 
 int main(int argc, char *argv[])
 {
-  ih_minigen_t *minigen;
   ih_genome_t fittest_genome;
   unsigned short i;
   unsigned long total = 0;
   ih_boole_t first_number = ih_boole_true;
 
-  /*  minigen = ih_minigen_create(calculate_fitness, 0.8, numbers);  */
-  minigen = ih_minigen_create(calculate_fitness, 0.1, numbers);
-  if (!minigen) {
-    ih_trace_exit("ih_minigen_create");
-  }
+  /*  fittest_genome = ih_minigen_evolve(calculate_fitness, 0.8, numbers);  */
+  fittest_genome = ih_minigen_evolve(calculate_fitness, 0.1, numbers);
 
-  fittest_genome = ih_minigen_generate(minigen);
   for (i = 0; i < IH_GENOME_SIZE_BITS; i++) {
     if (ih_bit_get(fittest_genome, i)) {
       if (!first_number) {
@@ -60,8 +55,6 @@ int main(int argc, char *argv[])
     }
   }
   printf(" = %lu\n", total);
-
-  ih_minigen_destroy(minigen);
 
   return 0;
 }
