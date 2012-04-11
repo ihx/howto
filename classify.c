@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
 
   srandom(time(NULL));
   ih_bitarray_randomize(&bitarray);
-  classification = ih_classify(bitarray, 30, ih_classify_style_majority);
+  classification = ih_classify(bitarray, ih_classify_style_majority, 2,
+      30, 80);
   printf("%d\n", classification);
 
   return 0;
