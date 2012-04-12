@@ -1,5 +1,5 @@
 #include "classify.h"
-#include "vclass.h"
+#include "tunnel.h"
 
 #define CLASSIFY_STYLE ih_classify_style_majority
 #define CXBITARRAYS_SIZE 16
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
   unsigned long i;
 
   set_bitarrays(cxbitarrays);
-  ih_vclass_evolve(cxbitarrays, CXBITARRAYS_SIZE, REQUIRED_FITNESS,
+  ih_tunnel_evolve(cxbitarrays, CXBITARRAYS_SIZE, REQUIRED_FITNESS,
       CLASSIFY_STYLE, rules);
   printf("%lu %lu %lu %lu %lu %lu %lu %lu\n", rules[0], rules[1], rules[2],
       rules[3], rules[4], rules[5], rules[6], rules[7]);
