@@ -14,6 +14,10 @@ void set_bitarrays(ih_cxbitarray_t cxbitarrays[])
   unsigned char value_b;
   unsigned char value_c;
   unsigned char value_d;
+  unsigned char value_e;
+  unsigned char value_f;
+  unsigned char value_g;
+  unsigned char value_h;
   ih_bitarray_t *bitarray;
 
   for (i = 0; i < CXBITARRAYS_SIZE; i++) {
@@ -21,13 +25,21 @@ void set_bitarrays(ih_cxbitarray_t cxbitarrays[])
     if (0 == (random() % 2)) {
       cxbitarrays[i].classification = 1;
       value_a = random() % 256;
-      value_b = value_a;
+      value_b = random() % 256;
       value_c = value_a;
-      value_d = value_a;
+      value_d = value_b;
+      value_e = value_a;
+      value_f = value_b;
+      value_g = value_a;
+      value_h = value_b;
       ih_bitarray_set_uchar(bitarray, 0, value_a);
       ih_bitarray_set_uchar(bitarray, 8, value_b);
       ih_bitarray_set_uchar(bitarray, 16, value_c);
       ih_bitarray_set_uchar(bitarray, 24, value_d);
+      ih_bitarray_set_uchar(bitarray, 32, value_e);
+      ih_bitarray_set_uchar(bitarray, 40, value_f);
+      ih_bitarray_set_uchar(bitarray, 48, value_g);
+      ih_bitarray_set_uchar(bitarray, 56, value_h);
     } else {
       cxbitarrays[i].classification = 0;
       ih_bitarray_randomize(bitarray);
@@ -38,7 +50,7 @@ void set_bitarrays(ih_cxbitarray_t cxbitarrays[])
 int main(int argc, char *argv[])
 {
   ih_cxbitarray_t cxbitarrays[CXBITARRAYS_SIZE];
-  unsigned long rules[4];
+  unsigned long rules[8];
   ih_bit_t classification;
   unsigned long total_correct;
   unsigned short j;
@@ -48,7 +60,8 @@ int main(int argc, char *argv[])
   set_bitarrays(cxbitarrays);
   ih_vclass_evolve(cxbitarrays, CXBITARRAYS_SIZE, REQUIRED_FITNESS,
       CLASSIFY_STYLE, rules);
-  printf("%lu %lu %lu %lu\n", rules[0], rules[1], rules[2], rules[3]);
+  printf("%lu %lu %lu %lu %lu %lu %lu %lu\n", rules[0], rules[1], rules[2],
+      rules[3], rules[4], rules[5], rules[6], rules[7]);
 
 #ifdef DEBUG_PRINT
   printf("fz\n");
@@ -58,8 +71,9 @@ int main(int argc, char *argv[])
     total_correct = 0;
     set_bitarrays(cxbitarrays);
     for (i = 0; i < CXBITARRAYS_SIZE; i++) {
-      classification = ih_classify(cxbitarrays[i].bitarray, CLASSIFY_STYLE, 4,
-          rules[0], rules[1], rules[2], rules[3]);
+      classification = ih_classify(cxbitarrays[i].bitarray, CLASSIFY_STYLE, 8,
+          rules[0], rules[1], rules[2], rules[3], rules[4], rules[5], rules[6],
+          rules[7]);
 #ifdef DEBUG_PRINT
       printf("\n");
 #endif
