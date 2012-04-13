@@ -1,5 +1,6 @@
 CFLAGS = -ansi -pedantic -Wall -Werror -o3 -D_BSD_SOURCE
 CFLAGS += -I$(IH) -L$(IH)
+CFLAGS += -g
 LDFLAGS = -lih
 
 SOURCES = $(shell ls *.c)
