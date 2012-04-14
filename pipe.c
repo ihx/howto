@@ -1,5 +1,5 @@
 #include "classify.h"
-#include "tube.h"
+#include "pipe.h"
 
 #define CLASSIFY_STYLE ih_classify_style_majority
 #define CXBITARRAYS_SIZE 16
@@ -50,7 +50,7 @@ void set_bitarrays(ih_cxbitarray_t cxbitarrays[])
 int main(int argc, char *argv[])
 {
   ih_cxbitarray_t cxbitarrays[CXBITARRAYS_SIZE];
-  unsigned long rules[8];
+  unsigned char rules[8];
   ih_bit_t classification;
   unsigned long total_correct;
   unsigned short j;
@@ -58,9 +58,10 @@ int main(int argc, char *argv[])
   unsigned long i;
 
   set_bitarrays(cxbitarrays);
-  ih_tube_evolve(cxbitarrays, CXBITARRAYS_SIZE, REQUIRED_FITNESS,
+  ih_pipe_evolve(cxbitarrays, CXBITARRAYS_SIZE, REQUIRED_FITNESS,
       CLASSIFY_STYLE, rules);
-  printf("%lu %lu %lu %lu\n", rules[0], rules[1], rules[2], rules[3]);
+  printf("%d %d %d %d %d %d %d %d\n", rules[0], rules[1], rules[2], rules[3],
+      rules[4], rules[5], rules[6], rules[7]);
 
 #ifdef DEBUG_PRINT
   printf("fz\n");
@@ -70,8 +71,9 @@ int main(int argc, char *argv[])
     total_correct = 0;
     set_bitarrays(cxbitarrays);
     for (i = 0; i < CXBITARRAYS_SIZE; i++) {
-      classification = ih_classify_crow(cxbitarrays[i].bitarray,
-          CLASSIFY_STYLE, 4, rules[0], rules[1], rules[2], rules[3]);
+      classification = ih_pipe_classify(cxbitarrays[i].bitarray,
+          CLASSIFY_STYLE, 8, rules[0], rules[1], rules[2], rules[3], rules[4],
+          rules[5], rules[6], rules[7]);
 #ifdef DEBUG_PRINT
       printf("\n");
 #endif
